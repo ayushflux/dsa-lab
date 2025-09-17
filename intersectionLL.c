@@ -41,7 +41,7 @@ void insert_save(Node** head, Node** save, int key){
     }
     *save=next;
 }
-void saved_insert(Node** head, Node** save){
+void attach(Node** head, Node** save){
     Node* next = *save;
     if(*head==NULL){
         *head=next;
@@ -104,14 +104,36 @@ int main(){
     initialize(&q1);
     initialize(&q2);
     initialize(&cm);
-    insert(&q1,1);
-    insert(&q1,2);
-    insert(&q1,3);
-    insert(&q2,6);
-    insert(&cm,7);
-    insert(&cm,4);
-    insert(&cm,5);
-    saved_insert(&q1,&cm);
-    saved_insert(&q2,&cm);
-    intersection(&q1,&q2);
+    int i=0;
+    while(i!=6){
+        printf("Select \n1:Insert to First Queue \n2:Insert to Second Queue K\n3:Insert to Common Tail\n4:Attach Common Tail to Both Queues\n5:Find Intersection Point\6:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            insert(&q1,n);
+            printf("\n Enqueued Value %d\n",n);
+        }else if(i==2){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            enqueue(&q2,n);
+            printf("\n Enqueued Value %d\n",n);
+        }else if(i==3){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            enqueue(&cm,n);
+            printf("\n Enqueued Value %d\n",n);
+        }else if(i==4){
+            attach(&q1,&cm);
+            attach(&q2,&cm);
+        }else if(i==5){
+            intersection(&q1,&q2);
+        }else{
+            break;
+        }
+    }
+
 }

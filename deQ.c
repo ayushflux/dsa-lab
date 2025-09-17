@@ -38,15 +38,21 @@ void insertFront(Queue *q, int k){
     }
 
 }
-void deleteFront(Queue *q){
+int deleteFront(Queue *q){
     if(!isEmpty(q)){
+        int value = (q->arr)[q->head];
         q->head=(q->head+1)%MAX;
+        return value;
     }
+    return -1;
 }
-void deleteRear(Queue *q){
+int deleteRear(Queue *q){
     if(!isEmpty(q)){
+        int value = (q->arr)[q->rear];
         q->rear=(q->rear+MAX-1)%MAX;
+        return value;
     }
+    return -1;
 }
 
 void display(Queue *q){
@@ -64,10 +70,41 @@ void display(Queue *q){
 int main(){
     Queue q;
     initialize(&q);
-    insertRear(&q,10);
-    insertRear(&q,20);
-    insertFront(&q,5);
-    deleteRear(&q);
-    insertFront(&q,15);
-    display(&q);
+    int i=0;
+    while(i!=6){
+        printf("Select \n1:Insert Front\n2:Insert Rear\n3:Delete Front\n4:Delete Rear\n5:Display\n6:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            insertFront(&q,n);
+            printf("\nPUSHED\n");
+        }else if(i==2){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            insertRear(&q,n);
+            printf("\nPUSHED\n");
+        }else if(i==3){
+            int n;
+            n=deleteFront(&q);
+            if(n!=-1){
+            printf("\nDequeued Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else if(i==4){
+            int n;
+            n=deleteRear(&q);
+            if(n!=-1){
+            printf("\nDequeued Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else if(i==5){
+            display(&q);
+        }else{
+            break;
+        }
+    }
+
 }

@@ -62,30 +62,47 @@ void display(Node **q){
         low=low->next;
     }
 }
-void floyd_algo(Node **head){
+int floyd_algo(Node **head){
     Node* slow= *head;
     Node* fast = *head;
     while(fast!=NULL&&fast->next!=NULL){
         slow=slow->next;
         fast=(fast->next)->next;
         if(slow==fast){
-            printf("Looping Linked List");
-            return;
+            return 1;
         }
     }
-    printf("NO LOOP");
-    display(head);
-    return;
+    return 0;
 }
 int main(){
     Node* head,*save;
     initialize(&head);
-    insert(&head,1);
-    insert_save(&head,&save,2);
-    insert(&head,3);
-    insert(&head,4);
-    insert(&head,5);
-    saved_insert(&head,&save);
-    floyd_algo(&head);
+    int i=0;
+    while(i!=4){
+        printf("Select \n1:Insert\n2:Save Insert Address K\n3:Use Saved Address\n4:Exit");
+        scanf("%d",&i);
+        if(i==1){
+        int n;
+        printf("\nEnter element to push: ");
+        scanf("%d",&n);
+        insertEnd(&head,n);
+        printf("\n Inserted %d\n",n);
+    }else if(i==2){
+        int n;
+        printf("\nEnter element to push: ");
+        scanf("%d",&n);
+        insert_save(&head,&save,n);
+    }else if(i==3){
+        saved_insert(&head,&save);
+    }else{
+        break;
+    }
+
+    }
+
+    if(floyd_algo(&head)){
+        printf("\nLoop Detected\n");}else{
+            printf("No LOOPs");
+        }
 
 }

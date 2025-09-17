@@ -39,14 +39,24 @@ int getMiddle(Node** head){
 }
 
 int main(){
-    Node* head;
-    initialize(&head);
-    insertEnd(&head, 10);
-    insertEnd(&head, 20);
-    insertEnd(&head, 30);
-    insertEnd(&head, 40);
-    insertEnd(&head, 50);
-    insertEnd(&head, 60);
-    printf("%d",getMiddle(&head));
+    Node* S1;
+    initialize(&S1);
+    int i=0;
+     while(i!=3){
+        printf("Select \n1:Insert\n2:Find Middle Element\n3:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            insertEnd(&S1,n);
+            printf("\n Inserted %d\n",n);
+        }else if(i==2){
+            printf("%d",getMiddle(&S1));
+        }
+        else {
+            break;}
+    }
+
 
 }

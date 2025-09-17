@@ -58,11 +58,29 @@ void display(Queue *q){
 }
 
 int main(){
-    Queue q;
-    initialize(&q);
-    enqueue(&q,10);
-    enqueue(&q,20);
-    enqueue(&q,30);
-    dequeue(&q);
-    display(&q);
+    Queue S1;
+    initialize(&S1);
+    int i=0;
+     while(i!=4){
+        printf("Select \n1:Push\n2:Pop\n3:Display\n4:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            enqueue(&S1,n);
+            printf("\n Enqueued Value %d\n",n);
+        }else if(i==2){
+            int n;
+            n=dequeue(&S1);
+            if(n!=-1){
+            printf("\nDequeued Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else if(i==3){
+            display(&S1);
+        }
+        else {
+            break;}
+    }
 }

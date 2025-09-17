@@ -54,12 +54,34 @@ int dequeue(Stack *S1, Stack *S2){
     }
     return value;   
 }
-
+int isEmpty(Stack *S1, Stack *S2){
+    return(stack_empty(S1));
+}
+int isFull(Stack *S1, Stack *S2){
+    return(stack_empty(S1));
+}
 int main(){
     Stack S1,S2;
     stack_init(&S1);
     stack_init(&S2);
-    enqueue(&S1,&S2,10);
-    enqueue(&S1,&S2,20);
-    enqueue(&S1, &S2,30);
+    int i=0;
+     while(i!=3){
+        printf("Select \n1:Enqueue\n2:Dequeue\n3:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            enqueue(&S1,&S2,n);
+            printf("\nEnqueued Value %d\n",n);
+        }else if(i==2){
+            int n;
+            n=dequeue(&S1,&S2);
+            if(n!=-1){
+            printf("\nDequeued Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else {
+            break;}
+    }
 }

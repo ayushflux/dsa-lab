@@ -42,10 +42,29 @@ void display(Node *current){
 }
 
 int main(){
-    Node *n=NULL;
-    push(&n,10);
-    push(&n,20);
-    push(&n,30);
-    printf("%d\n",pop(&n));
-    display(n);
+    Node *S1=NULL;
+    int i=0;
+     while(i!=4){
+        printf("Select \n1:Push\n2:Pop\n3:Display\n4:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            push(&S1,n);
+            printf("\nPUSHED %d\n",n);
+        }else if(i==2){
+            int n;
+            n=pop(&S1);
+            if(n!=-1){
+            printf("\nPopped Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else if(i==3){
+            display(&S1);
+        }
+        else {
+            break;}
+    }
+
 }

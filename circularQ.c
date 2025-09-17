@@ -29,10 +29,13 @@ void enqueue(Queue *q, int k){
     }
 
 }
-void dequeue(Queue *q){
+int dequeue(Queue *q){
     if(!isEmpty(q)){
+        int value=(q->arr)[q->head];
         q->head=(q->head+1)%MAX;
+        return value;
     }
+    return -1;
 }
 
 void display(Queue *q){
@@ -47,12 +50,27 @@ void display(Queue *q){
 int main(){
     Queue q;
     initialize(&q);
-    enqueue(&q,10);
-    enqueue(&q,20);
-    enqueue(&q,30);
-    dequeue(&q);
-    enqueue(&q,40);
-    dequeue(&q);
-    dequeue(&q);
-    display(&q);
+    int i=0;
+    while(i!=4){
+        printf("Select \n1:Enqueue\n2:Dequeue\n3:Display\n4:Exit");
+        scanf("%d",&i);
+        if(i==1){
+            int n;
+            printf("\nEnter element to push: ");
+            scanf("%d",&n);
+            enqueue(&q,n);
+            printf("\nEnqueued %d\n",n);
+        }else if(i==2){
+            int n;
+            n=dequeue(&q);
+            if(n!=-1){
+            printf("\nDequeued Value: %d\n",n);}else{
+                printf("Empty Queue");
+            }
+        }else if(i==3){
+            display(&q);
+        }else{
+            break;
+        }
+    }
 }
